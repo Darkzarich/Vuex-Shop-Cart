@@ -8,7 +8,8 @@
         >
         <ul v-else>
             <li v-for="(product, index) in products" v-bind:key="index">
-                {{product.title}} - {{product.price}}
+                {{product.title}} - {{product.price}} - {{product.inventory}}
+                <button @click="addProductToCart(product)">Add product to cart</button>
             </li>
         </ul>
     </div>
@@ -25,6 +26,11 @@ export default {
   computed: {
     products() {
       return this.$store.getters.availableProducts;
+    }
+  },
+  methods: {
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
     }
   },
   created() {
