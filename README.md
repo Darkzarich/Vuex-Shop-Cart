@@ -1,34 +1,4 @@
-# shop-cart-vuex
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<<<<<<< HEAD
+# Vuex Shop cart
+The Shop cart I built with Vue and Vuex for educational purpose as a part of course "Vuex for Everyone" by Vue School
+>>>>>>> ed10d97190ec029a9992c14a354fe7c0ca076c80
