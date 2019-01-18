@@ -10,7 +10,8 @@ export default new Vuex.Store({
     // = data
     products: [],
     // {id, quantity}
-    cart: []
+    cart: [],
+    checkoutStatus: null
   },
   mutations: {
     // something new and is used for setting or updating the state
@@ -28,6 +29,12 @@ export default new Vuex.Store({
     },
     decrementProductInventory(state, product) {
       product.inventory--;
+    },
+    setCheckoutStatus(state, status) {
+      state.checkoutStatus = status;
+    },
+    emptyCart(state) {
+      state.cart = [];
     }
   },
   getters: {
@@ -55,7 +62,6 @@ export default new Vuex.Store({
   },
   actions: {
     fetchProducts(context) {
-      // ...
       return new Promise(resolve => {
         shop.getProducts(products => {
           context.commit("setProducts", products);
@@ -74,6 +80,19 @@ export default new Vuex.Store({
         }
         context.commit("decrementProductInventory", product);
       }
+    },
+
+    checkout(context) {
+      shop.buyProducts(
+        context.state.cart,
+        () => {
+          context.commit("emptyCart");
+          context.commit("setCheckoutStatus", "success");
+        },
+        () => {
+          context.commit("setCheckoutStatus", "fail");
+        }
+      );
     }
   }
 });
