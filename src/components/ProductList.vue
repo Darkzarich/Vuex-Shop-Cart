@@ -8,7 +8,7 @@
         >
         <ul v-else>
             <li v-for="(product, index) in products" v-bind:key="index">
-                {{product.title}} - {{product.price}} - {{product.inventory}}
+                {{product.title}} - {{product.price | currency}} - {{product.inventory}}
                 <button @click="addProductToCart(product)">Add product to cart</button>
             </li>
         </ul>
