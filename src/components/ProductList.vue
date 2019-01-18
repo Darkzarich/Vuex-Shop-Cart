@@ -1,7 +1,12 @@
 <template>
     <div>
         <h1>Product List</h1>
-        <ul>
+        <img
+            src="https://i.imgur.com/JfPpwOA.gif"
+            alt="loading"
+            v-if="loading"
+        >
+        <ul v-else>
             <li v-for="(product, index) in products" v-bind:key="index">
                 {{product.title}} - {{product.price}}
             </li>
@@ -10,18 +15,23 @@
 </template>
 
 <script>
-import shop from "@/api/shop";
-
 export default {
   name: "ProductList",
   data() {
     return {
-      products: []
+      loading: false
     };
   },
+  computed: {
+    products() {
+      return this.$store.getters.availableProducts;
+    }
+  },
   created() {
-    shop.getProducts(products => {
-      this.products = products;
+    this.loading = true;
+
+    this.$store.dispatch("fetchProducts").then(() => {
+      this.loading = false;
     });
   }
 };
