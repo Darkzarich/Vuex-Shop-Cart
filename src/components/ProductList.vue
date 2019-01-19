@@ -32,7 +32,9 @@ export default {
   computed: {
     // ... operator is ES7 Spread, is there to merge objects while mapState and mapGetters return
 
-    ...mapState(["products"]),
+    ...mapState({
+      products: state => state.products.items
+    }),
 
     ...mapGetters(["productIsInStock"])
   },
